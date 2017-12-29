@@ -3,7 +3,7 @@
 
 typedef struct Coordinate Coordinate;
 struct Coordinate {
-  int x;
-  int y;
+  double x;
+  double y;
 };
 #endif // _COORDINATE_H

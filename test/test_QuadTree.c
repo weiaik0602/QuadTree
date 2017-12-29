@@ -1,6 +1,8 @@
 #include "unity.h"
 #include "QuadTree.h"
 #include "nodeHelper.h"
+#include "Coordinate.h"
+#include <stdint.h>
 
 void setUp(void)
 {
@@ -11,6 +13,18 @@ void tearDown(void)
 {
 }
 
+void test_initQuadTree(void){
+  Node root;
+  Coordinate max={10,10};
+  Coordinate min={-10,-10};
+  initQuadTree(&root,max,min);
+  TEST_ASSERT_EQUAL(root.max.x,10);
+  TEST_ASSERT_EQUAL(root.max.y,10);
+  TEST_ASSERT_EQUAL(root.min.x,-10);
+  TEST_ASSERT_EQUAL(root.min.y,-10);
+  TEST_ASSERT_EQUAL(root.coor.x,0);
+  TEST_ASSERT_EQUAL(root.coor.y,0);
+}
 void test_QuadTree_Compare(void)
 {
   Coordinate root={0,0};
@@ -43,7 +57,9 @@ void test_addNodeQuad(void){
   initNode(&node30,NULL,NULL,NULL,NULL,f);
   initNode(&node35,NULL,NULL,NULL,NULL,g);
   Node *root = &node1;
-
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  initQuadTree(root,max,min);
   addNodeQuad(&root,&node5);
   TEST_ASSERT_EQUAL(root,&node1);
   TEST_ASSERT_EQUAL_PTR(&node5,node1.upleft);

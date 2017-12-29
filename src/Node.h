@@ -9,6 +9,10 @@ struct Node {
   Node *downleft;
   Node *downright;
   Coordinate coor;
+  Coordinate max;
+  Coordinate min;
   void *data;
 };
+
+
 #endif // _NODE_H
