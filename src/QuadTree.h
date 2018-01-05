@@ -12,10 +12,10 @@
 #define DOWNLEFT  10
 #define DOWNRIGHT 11
 #define SAME      99
-
+#define OUTBOUND  98
 
 void initQuadTree(Node *root,Coordinate maximum,Coordinate minimum);
-int Compare(Coordinate root,Coordinate toAdd);
+int Compare(Node root,Coordinate check);
 
 Node *addNodeQuad(Node **rootPtr, Node *nodeToAdd);
 #endif // _QUADTREE_H

@@ -7,12 +7,15 @@
 void setUp(void)
 {
   giveInitdata();
+
 }
 
 void tearDown(void)
 {
 }
-
+Coordinate rootCoor={0,0};
+Coordinate maxCoor={10,10};
+Coordinate minCoor={-10,-10};
 void test_initQuadTree(void){
   Node root;
   Coordinate max={10,10};
@@ -27,8 +30,9 @@ void test_initQuadTree(void){
 }
 void test_QuadTree_Compare(void)
 {
-  Coordinate root={0,0};
 
+  Node root;
+  initQuadTree(&root,maxCoor,minCoor);
   int v1=Compare(root,a);
   int v2=Compare(root,b);
   int v3=Compare(root,c);
@@ -36,14 +40,18 @@ void test_QuadTree_Compare(void)
   int v5=Compare(root,e);
   int v6=Compare(root,f);
   int v7=Compare(root,g);
+  int v8=Compare(root,h);
+  int v9=Compare(root,i);
 
-  TEST_ASSERT_EQUAL(v1,0);
-  TEST_ASSERT_EQUAL(v2,01);
-  TEST_ASSERT_EQUAL(v3,10);
-  TEST_ASSERT_EQUAL(v4,11);
-  TEST_ASSERT_EQUAL(v5,0);
-  TEST_ASSERT_EQUAL(v6,11);
-  TEST_ASSERT_EQUAL(v7,99);
+  TEST_ASSERT_EQUAL(v1,UPLEFT);
+  TEST_ASSERT_EQUAL(v2,UPRIGHT);
+  TEST_ASSERT_EQUAL(v3,DOWNLEFT);
+  TEST_ASSERT_EQUAL(v4,DOWNRIGHT);
+  TEST_ASSERT_EQUAL(v5,UPLEFT);
+  TEST_ASSERT_EQUAL(v6,DOWNRIGHT);
+  TEST_ASSERT_EQUAL(v7,SAME);
+  TEST_ASSERT_EQUAL(v8,OUTBOUND);
+  TEST_ASSERT_EQUAL(v9,OUTBOUND);
 }
 
 void test_addNodeQuad(void){

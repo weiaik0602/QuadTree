@@ -3,7 +3,7 @@
 extern Node node1 ,node2, node3, node4,node23,node5,node7, node10,node15, node20, node25, node30, node35, node40;
 extern Node node45, node50, node55, node60, node65, node70, node75, node80;
 extern Node node85, node90, node95, node100;
-extern Coordinate a,b,c,d,e,f,g;
+extern Coordinate a,b,c,d,e,f,g,h,i;
 void initNode (Node *node, Node *upleft, Node *upright, Node *downleft,Node *downright, Coordinate coor){
   node->upleft = upleft;
   node->upright = upright;
@@ -46,4 +46,6 @@ void giveInitdata(void){
   e.x=-1  ,e.y=0;
   f.x=0   ,f.y=-1;
   g.x=0   ,g.y=0;
+  h.x=11  ,h.y=11;
+  i.x=-11 ,i.y=-11;
 }

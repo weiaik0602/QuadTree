@@ -7,7 +7,7 @@ Node node45, node50, node55, node60, node65, node70, node75, node80;
 Node node85, node90, node95, node100;
 
 
-Coordinate a,b,c,d,e,f,g;
+Coordinate a,b,c,d,e,f,g,h,i;
 
 
 void initNode (Node *node, Node *upleft, Node *upright, Node *downleft,Node *downright, Coordinate coor);
