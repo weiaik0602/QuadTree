@@ -24,6 +24,6 @@ void calculateUPRIGHT(QuadTree *root);
 void calculateDOWNLEFT(QuadTree *root);
 void calculateDOWNRIGHT(QuadTree *root);
 void calculateMID(QuadTree *root);
-QuadTree *QuadTreeAdd(QuadTree **rootPtr,Coordinate *coorAdd);
-QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate *coorDel);
+QuadTree *QuadTreeAdd(QuadTree **rootPtr,Coordinate coorAdd);
+QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel);
 #endif // _QUADTREE_H

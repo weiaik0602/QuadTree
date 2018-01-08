@@ -17,14 +17,17 @@ struct Node {
 
 typedef struct QuadTree QuadTree;
 struct QuadTree{
+
   QuadTree *upleft;
   QuadTree *upright;
   QuadTree *downleft;
   QuadTree *downright;
+  int NOD;
   Coordinate max;
   Coordinate min;
   Coordinate mid;
-  Coordinate *data;
+  Coordinate data;
+
 };
 
 #endif // _NODE_H
