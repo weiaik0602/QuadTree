@@ -16,6 +16,7 @@ void tearDown(void)
 Coordinate rootCoor={0,0};
 Coordinate maxCoor={10,10};
 Coordinate minCoor={-10,-10};
+/*
 void test_initQuadTree(void){
   Node root;
   Coordinate max={10,10};
@@ -52,8 +53,8 @@ void test_QuadTree_Compare(void)
   TEST_ASSERT_EQUAL(v7,SAME);
   TEST_ASSERT_EQUAL(v8,OUTBOUND);
   TEST_ASSERT_EQUAL(v9,OUTBOUND);
-}
-
+}*/
+/*
 void test_addNodeQuad(void){
   Coordinate rootCoor={0,0};
   initNode(&node1,NULL,NULL,NULL,NULL,rootCoor);
@@ -117,4 +118,24 @@ void test_addNodeQuad(void){
   TEST_ASSERT_EQUAL_PTR(&node20,node1.downright);
   TEST_ASSERT_EQUAL_PTR(&node25,node5.downright);
   TEST_ASSERT_EQUAL_PTR(&node30,node20.upleft);
+}
+*/
+
+//Cn22,C22,Cn2n2,C2n2,Cn10,C0n1,C00,C1111,Cn11n11;
+void test_QuadTreeAdd(void){
+
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  QuadTree Tree={NULL,NULL,NULL,NULL,max,min};
+  QuadTree *TreePtr=&Tree;
+  TreePtr=QuadTreeAdd(&TreePtr,&Cn22);
+
+  TEST_ASSERT_EQUAL(Tree.data->x,Cn22.x);
+  TEST_ASSERT_EQUAL(Tree.data->y,Cn22.y);
+
+  QuadTreeAdd(&TreePtr,&Cn2n2);
+  TEST_ASSERT_EQUAL(Tree.upleft->data->x,-2);
+  TEST_ASSERT_EQUAL(Tree.upleft->data->y,2);
+  TEST_ASSERT_EQUAL(Tree.upright->data->x,-2);
+  TEST_ASSERT_EQUAL(Tree.upright->data->y,2);
 }
