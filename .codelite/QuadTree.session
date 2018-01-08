@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="C:\Users\user1\Desktop\NgWa\QuadTree\QuadTree.workspace">
+  <int Value="1" Name="m_selectedTab"/>
+  <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\QuadTree.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\build\test\runners\test_QuadTree_runner.c" Name="FileName"/>
+      <int Value="38" Name="FirstVisibleLine"/>
+      <int Value="53" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\test\test_QuadTree.c" Name="FileName"/>
+      <int Value="194" Name="FirstVisibleLine"/>
+      <int Value="209" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\src\QuadTree.c" Name="FileName"/>
+      <int Value="137" Name="FirstVisibleLine"/>
+      <int Value="166" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\src\QuadTree.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="27" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="2" Name="Count"/>
+    <SerializedObject Name="Breakpoint0">
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\test\test_QuadTree.c" Name="file"/>
+      <int Value="209" Name="lineno"/>
+      <wxString Value="" Name="function_name"/>
+      <wxString Value="" Name="memory_address"/>
+      <int Value="1" Name="bp_type"/>
+      <int Value="0" Name="watchpoint_type"/>
+      <wxString Value="" Name="watchpt_data"/>
+      <CData Name="commandlist"/>
+      <bool Value="0" Name="regex"/>
+      <bool Value="0" Name="is_temp"/>
+      <bool Value="1" Name="is_enabled"/>
+      <int Value="0" Name="ignore_number"/>
+      <wxString Value="" Name="conditions"/>
+      <int Value="0" Name="origin"/>
+    </SerializedObject>
+    <SerializedObject Name="Breakpoint1">
+      <wxString Value="C:\Users\user1\Desktop\NgWa\QuadTree\test\test_QuadTree.c" Name="file"/>
+      <int Value="210" Name="lineno"/>
+      <wxString Value="" Name="function_name"/>
+      <wxString Value="" Name="memory_address"/>
+      <int Value="1" Name="bp_type"/>
+      <int Value="0" Name="watchpoint_type"/>
+      <wxString Value="" Name="watchpt_data"/>
+      <CData Name="commandlist"/>
+      <bool Value="0" Name="regex"/>
+      <bool Value="0" Name="is_temp"/>
+      <bool Value="1" Name="is_enabled"/>
+      <int Value="0" Name="ignore_number"/>
+      <wxString Value="" Name="conditions"/>
+      <int Value="0" Name="origin"/>
+    </SerializedObject>
+  </SerializedObject>
+</Session>
