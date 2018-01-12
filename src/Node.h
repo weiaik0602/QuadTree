@@ -30,4 +30,13 @@ struct QuadTree{
 
 };
 
+typedef struct Quad Quad;
+struct Quad{
+  Quad* Q1;
+  Quad* Q2;
+  Quad* Q3;
+  Quad* Q4;
+  Coordinate data;
+  int level;
+};
 #endif // _NODE_H

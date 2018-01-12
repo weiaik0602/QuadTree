@@ -124,6 +124,7 @@ void test_addNodeQuad(void){
 */
 
 //Cn22,C22,Cn2n2,C2n2,Cn10,C0n1,C00,C1111,Cn11n11;
+
 void test_QuadTreeAdd(void){
 
   Coordinate max={100,100};
@@ -175,7 +176,7 @@ void test_QuadTreeAdd(void){
 
 
 
-
+/*
 void test_QuadTreeDelete_removeOneCoor(void){
 
     Coordinate max={100,100};
@@ -186,21 +187,24 @@ void test_QuadTreeDelete_removeOneCoor(void){
     TreePtr=QuadTreeAdd(&TreePtr,Cn22);
     TEST_ASSERT_EQUAL(Tree.data.x,Cn22.x);
     TEST_ASSERT_EQUAL(Tree.data.y,Cn22.y);
-    TreePtr=QuadTreeDelete(&TreePtr,Cn22);
-  //  TEST_ASSERT_EQUAL(Tree.data,NULL);
+    TreePtr=QuadTreeDelete(TreePtr,Cn22);
+    TEST_ASSERT_EQUAL_PTR(TreePtr,NULL);
+    free(TreePtr);
 }
-/*
+*/
 void test_QuadTreeDelete_removeMultiple(void){
   Coordinate max={100,100};
   Coordinate min={-100,-100};
-  QuadTree Tree={NULL,NULL,NULL,NULL,max,min};
-  //QuadTree *TreePtr=(QuadTree *)calloc(10,sizeof(QuadTree));
-  QuadTree *TreePtr=&Tree;
+   QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+//  QuadTree *TreePtr=(QuadTree *)calloc(5000000, sizeof(QuadTree));
+  QuadTree *TreePtr= (QuadTree *)calloc(5000000, sizeof(QuadTree));
+  TreePtr=&Tree;
     //add into 4 elements
     TreePtr=QuadTreeAdd(&TreePtr,Cn22);
     TreePtr=QuadTreeAdd(&TreePtr,C22);
     TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
     TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+
     //check
     TEST_ASSERT_EQUAL(Tree.upleft->data.x,-2);
     TEST_ASSERT_EQUAL(Tree.upleft->data.y,2);
@@ -210,15 +214,47 @@ void test_QuadTreeDelete_removeMultiple(void){
     TEST_ASSERT_EQUAL(Tree.upright->data.y,2);
     TEST_ASSERT_EQUAL(Tree.downright->data.x,2);
     TEST_ASSERT_EQUAL(Tree.downright->data.y,-2);
-    //remove Coor from UL
-    TreePtr=QuadTreeDelete(&TreePtr,Cn22);
+
+    //remove n22 from UL
+    TreePtr=QuadTreeDelete(TreePtr,Cn22);
     TEST_ASSERT_EQUAL(Tree.upleft,NULL);
-    //TEST_ASSERT_EQUAL(Tree.upleft->data.y,2);
     TEST_ASSERT_EQUAL(Tree.downleft->data.x,-2);
     TEST_ASSERT_EQUAL(Tree.downleft->data.y,-2);
-    TEST_ASSERT_EQUAL(Tree.upright->data.x,2);
-    TEST_ASSERT_EQUAL(Tree.upright->data.y,2);
     TEST_ASSERT_EQUAL(Tree.downright->data.x,2);
     TEST_ASSERT_EQUAL(Tree.downright->data.y,-2);
+    TEST_ASSERT_EQUAL(Tree.upright->data.x,2);
+    TEST_ASSERT_EQUAL(Tree.upright->data.y,2);
+/*
+    TreePtr=QuadTreeDelete(TreePtr,C2n2);
+    TEST_ASSERT_EQUAL(Tree.downright,NULL);
+    TEST_ASSERT_EQUAL(Tree.upleft->data.x,-2);
+    TEST_ASSERT_EQUAL(Tree.upleft->data.y,2);
+    TEST_ASSERT_EQUAL(Tree.upright->data.x,2);
+    TEST_ASSERT_EQUAL(Tree.upright->data.y,2);
+    TEST_ASSERT_EQUAL(Tree.downleft->data.x,-2);
+    TEST_ASSERT_EQUAL(Tree.downleft->data.y,-2);
+*/
+}
+/*
+void test_calculateDistance(void){
+//calculateDistance(Cn22,C35);
+  //printf("%f",x);
+  //TEST_ASSERT_EQUAL_D(x,0);
+}
+
+void test_QuadCheck(void){
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+   QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+//  QuadTree *TreePtr=(QuadTree *)calloc(5000000, sizeof(QuadTree));
+  QuadTree *TreePtr= (QuadTree *)calloc(10, sizeof(QuadTree));
+  TreePtr=&Tree;
+    //add into 4 elements
+    TreePtr=QuadTreeAdd(&TreePtr,Cn22);
+    TreePtr=QuadTreeAdd(&TreePtr,C22);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+
+    QuadCheck(Cn22,&Tree,UPLEFT);
 }
 */

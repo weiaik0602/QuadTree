@@ -8,7 +8,7 @@ Node node85, node90, node95, node100;
 
 
 Coordinate a,b,c,d,e,f,g,h,i;
-Coordinate  Cn22,C22,Cn2n2,C2n2,Cn10,C0n1,C00,C1111,Cn11n11,Cn7575;
+Coordinate  Cn22,C22,Cn2n2,C2n2,Cn10,C0n1,C00,C1111,Cn11n11,Cn7575,C31,C35;
 
 void initNode (Node *node, Node *upleft, Node *upright, Node *downleft,Node *downright, Coordinate coor);
 void giveInitdata(void);
