@@ -138,9 +138,10 @@ void test_QuadTreeDelete_2ndLevel(void){
   TreePtr=QuadTreeAdd(&TreePtr,C2n2);
   TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
   //delete from level 2
+  //the data at upleft->downleft come up to upleft->data
   TreePtr=QuadTreeDelete(&TreePtr,Cn7575);
-  TEST_ASSERT_EQUAL(Tree.upleft->downright->data.x,-2);
-  TEST_ASSERT_EQUAL(Tree.upleft->downright->data.y,2);
+  TEST_ASSERT_EQUAL(Tree.upleft->data.x,-2);
+  TEST_ASSERT_EQUAL(Tree.upleft->data.y,2);
   TEST_ASSERT_EQUAL(Tree.downleft->data.x,-2);
   TEST_ASSERT_EQUAL(Tree.downleft->data.y,-2);
   TEST_ASSERT_EQUAL(Tree.upright->data.x,2);
@@ -150,7 +151,7 @@ void test_QuadTreeDelete_2ndLevel(void){
 
 
 }
-/*
+
 void test_calculateDistance(void){
 //calculateDistance(Cn22,C35);
   //printf("%f",x);
@@ -172,4 +173,3 @@ void test_QuadCheck(void){
 
     QuadCheck(Cn22,&Tree,UPLEFT);
 }
-*/

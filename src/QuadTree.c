@@ -144,7 +144,7 @@ QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel){
     if(root->upleft==NULL&&root->upright==NULL       \
       &&root->downleft==NULL&&root->downright==NULL){
         if(CompareData(*root,coorDel)==DATASAME){
-          return NULL;
+            return NULL;
         }
         else
            Throw((uintptr_t)(createException("The Coordinate is not existing !!!",0)));
@@ -157,6 +157,8 @@ QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel){
               Throw((uintptr_t)(createException("The Coordinate is not existing !!!",0)));
           else{
               root->upleft=QuadTreeDelete(&(root->upleft),coorDel);
+              if(root->upleft==NULL)
+                root->NOD--;
           }
         }
         else if(cmpval==UPRIGHT){
@@ -164,6 +166,8 @@ QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel){
               Throw((uintptr_t)(createException("The Coordinate is not existing !!!",0)));
           else{
             root->upright=QuadTreeDelete(&(root->upright),coorDel);
+            if(root->upright==NULL)
+              root->NOD--;
             }
         }
         else if(cmpval==DOWNLEFT){
@@ -171,6 +175,8 @@ QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel){
             Throw((uintptr_t)(createException("The Coordinate is not existing !!!",0)));
           else{
             root->downleft=QuadTreeDelete(&(root->downleft),coorDel);
+            if(root->downleft==NULL)
+              root->NOD--;
             }
         }
         else if(cmpval==DOWNRIGHT){
@@ -178,16 +184,36 @@ QuadTree *QuadTreeDelete(QuadTree **rootPtr,Coordinate coorDel){
             Throw((uintptr_t)(createException("The Coordinate is not existing !!!",0)));
           else{
             root->downright=QuadTreeDelete(&(root->downright),coorDel);
+            if(root->downright==NULL)
+              root->NOD--;
             }
         }
         else if(cmpval==SAME){
           return NULL;
         }
       }
+      if(root->NOD==1){
+        if(root->upleft!=NULL){
+          root->data=root->upleft->data;
+          root->upleft=NULL;
+        }
+        else if(root->upright!=NULL){
+          root->data=root->upright->data;
+          root->upright=NULL;
+        }
+        else if(root->downleft!=NULL){
+          root->data=root->downleft->data;
+          root->downleft=NULL;
+        }
+        else if(root->downright!=NULL){
+          root->data=root->downright->data;
+          root->downright=NULL;
+        }
+      }
       return root;
   }
 }
-/*
+
 void QuadSearch(QuadTree *root,Quad *Quadrant){
   if(root->upleft!=NULL||root->upright!=NULL||  \
      root->downleft!=NULL||root->downright!=NULL){
@@ -224,7 +250,7 @@ void calculateDistance(Coordinate a,Coordinate b){
   y=y*y;
   double result=sqrt(x+y);
   if(result<COLLISION_RANGE){
-    printf("(%d,%d) (%d,%d) range %f",a.x,a.y,b.x,b.y,result);
+    printf("(%d,%d) (%d,%d) range %.2f\n",a.x,a.y,b.x,b.y,result);
   }
 }
 void QuadCheck(Coordinate Coor,QuadTree *root,int mode){
@@ -237,8 +263,8 @@ void _QuadCheck(Coordinate Coor,QuadTree *root,int mode,int *level){
     if(mode==UPLEFT){
       QuadTree temp=*root;
       checkUpRight(&temp,Coor,level,mode);
-      //checkDownLeft(root,Coor,level,mode);
-    //  checkDownRight(root,Coor,level,mode);
+      checkDownLeft(root,Coor,level,mode);
+      checkDownRight(root,Coor,level,mode);
     }
     else if(mode==UPRIGHT){
       checkUpLeft(root,Coor,level,mode);
@@ -348,4 +374,3 @@ void checkDownRight(QuadTree *root,Coordinate Coor,int level,int mode){
     }
 }
 }
-*/

@@ -31,7 +31,7 @@ QuadTree *QuadTreeAdd(QuadTree **rootPtr,Coordinate coorAdd);
 QuadTree *QuadTreeDelete(QuadTree **root,Coordinate coorDel);
 void QuadCheck(Coordinate Coor,QuadTree *root,int mode);
 void calculateDistance(Coordinate a,Coordinate b);
-void QuadCheck(Coordinate Coor,QuadTree *root,int mode);
+void _QuadCheck(Coordinate Coor,QuadTree *root,int mode,int *level);
 void checkDownRight(QuadTree *root,Coordinate Coor,int level,int mode);
 void checkDownLeft(QuadTree *root,Coordinate Coor,int level,int mode);
 void checkUpRight(QuadTree *root,Coordinate Coor,int level,int mode);
