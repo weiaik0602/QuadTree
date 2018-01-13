@@ -28,7 +28,7 @@ void calculateDOWNRIGHT(QuadTree *root);
 void calculateMID(QuadTree *root);
 void QuadTreeInit(QuadTree *Tree);
 QuadTree *QuadTreeAdd(QuadTree **rootPtr,Coordinate coorAdd);
-QuadTree *QuadTreeDelete(QuadTree *root,Coordinate coorDel);
+QuadTree *QuadTreeDelete(QuadTree **root,Coordinate coorDel);
 void QuadCheck(Coordinate Coor,QuadTree *root,int mode);
 void calculateDistance(Coordinate a,Coordinate b);
 void QuadCheck(Coordinate Coor,QuadTree *root,int mode);
