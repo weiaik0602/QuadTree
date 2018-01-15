@@ -142,7 +142,6 @@ void test_QuadTreeDelete_2ndLevel(void){
   TreePtr=QuadTreeDelete(&TreePtr,Cn7575);
   TEST_ASSERT_EQUAL(Tree.upleft->data.x,-2);
   TEST_ASSERT_EQUAL(Tree.upleft->data.y,2);
-  TEST_ASSERT_EQUAL(Tree.downleft->data.x,-2);
   TEST_ASSERT_EQUAL(Tree.downleft->data.y,-2);
   TEST_ASSERT_EQUAL(Tree.upright->data.x,2);
   TEST_ASSERT_EQUAL(Tree.upright->data.y,2);
@@ -170,6 +169,8 @@ void test_QuadCheck(void){
     TreePtr=QuadTreeAdd(&TreePtr,C22);
     TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
     TreePtr=QuadTreeAdd(&TreePtr,C2n2);
-
-    QuadCheck(Cn22,&Tree,UPLEFT);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
+    Quad quadrant;
+    quadrant=*putQuad(TreePtr,&quadrant,0);
+    QuadCheck(Cn22,&Tree,UPLEFT,0);
 }

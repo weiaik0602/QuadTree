@@ -26,14 +26,15 @@ void calculateUPRIGHT(QuadTree *root);
 void calculateDOWNLEFT(QuadTree *root);
 void calculateDOWNRIGHT(QuadTree *root);
 void calculateMID(QuadTree *root);
-void QuadTreeInit(QuadTree *Tree);
+
 QuadTree *QuadTreeAdd(QuadTree **rootPtr,Coordinate coorAdd);
 QuadTree *QuadTreeDelete(QuadTree **root,Coordinate coorDel);
-void QuadCheck(Coordinate Coor,QuadTree *root,int mode);
+void QuadCheck(Coordinate Coor,QuadTree *root,int mode,int lvl);
 void calculateDistance(Coordinate a,Coordinate b);
-void _QuadCheck(Coordinate Coor,QuadTree *root,int mode,int *level);
+void _QuadCheck(Coordinate Coor,QuadTree *root,int mode,int level);
 void checkDownRight(QuadTree *root,Coordinate Coor,int level,int mode);
 void checkDownLeft(QuadTree *root,Coordinate Coor,int level,int mode);
 void checkUpRight(QuadTree *root,Coordinate Coor,int level,int mode);
 void checkUpLeft(QuadTree *root,Coordinate Coor,int level,int mode);
+Quad *putQuad(QuadTree *root,Quad *quadrant,int lvl);
 #endif // _QUADTREE_H
