@@ -248,71 +248,152 @@ void calculateDistance(Coordinate a,Coordinate b){
     printf("(%d,%d) (%d,%d) range %.2f\n",a.x,a.y,b.x,b.y,result);
   //}
 }
-void QuadCheck(Coordinate Coor,QuadTree *root,int mode,int lvl){
-  if(root==NULL)
-    printf("This tree is NULL, ntg to check!!!\n");
-  else{
-    if(root->upleft==NULL&&root->upright==NULL       \
-      &&root->downleft==NULL&&root->downright==NULL){
+void QuadCheck(QuadTree *root){
+  if(root->upleft!=NULL){
+    Pointer *new=(Pointer*)calloc(1,sizeof(Pointer));
+    new=insertPointer(root,new,UPLEFT);
+    //_QuadCheck(root->upleft,new);
+    int a=1;
 
+  }
+  else{
+    Pointer new;
+    //_QuadCheck(root,new);
+  }
+}
+void _QuadCheck(QuadTree *root,Pointer point){
+
+}
+Pointer* insertPointer(QuadTree *root,Pointer* point,int mode){
+  if(point->A==NULL&&point->B==NULL&&point->C==NULL&&point->D==NULL\
+    &&point->E==NULL&&point->F==NULL&&point->G==NULL&&point->H==NULL\
+    &&point->I==NULL){
+        point=insertNULLPointer(root,point,mode);
       }
-    else{
-      if(root->upleft!=NULL){
-        if(root->upleft->NOD==1)
-          _QuadCheck(root->upleft->data,root,UPLEFT,lvl++);
-        else
-          QuadCheck(Coor,root->upleft,UPLEFT,lvl+2);
-        }
-        if(root->upright!=NULL){
-          if(root->upright->NOD==1)
-            _QuadCheck(root->upright->data,root,UPRIGHT,lvl++);
-          else
-            QuadCheck(Coor,root->upright,UPRIGHT,lvl+2);
-        }
-        if(root->downleft!=NULL){
-          if(root->downleft->NOD==1)
-            _QuadCheck(root->downleft->data,root,DOWNLEFT,lvl++);
-          else
-            QuadCheck(Coor,root->downleft,DOWNLEFT,lvl+2);
-        }
-        if(root->downright!=NULL){
-          if(root->downright->NOD==1)
-            _QuadCheck(root->downright->data,root,DOWNRIGHT,lvl++);
-          else
-            QuadCheck(Coor,root->downright,DOWNRIGHT,lvl+2);
-          }
+  else{
+    if(mode==UPLEFT){
+      insertUPLEFTPointer(point);
     }
   }
-  //_QuadCheck(Coor,root,mode,lvl++);
 }
-void _QuadCheck(Coordinate Coor,QuadTree *root,int mode,int level){
-  if(level==1){
-    if(mode==UPLEFT){
-      checkUpRight(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==UPRIGHT){
-      checkUpLeft(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==DOWNLEFT){
-      checkUpLeft(root,Coor,level,mode);
-      checkUpRight(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==DOWNRIGHT){
-      checkUpLeft(root,Coor,level,mode);
-      checkUpRight(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-    }
+Pointer* insertUPLEFTPointer(Pointer *root){
+  Pointer *point=(Pointer *)malloc(sizeof(Pointer));
+  *point=*root;
+  //A
+  if(point->A!=NULL&&point->A->NOD>1)
+    point->A=point->A->downright;
+  //B&C
+  if(point->B!=NULL&&point->B->NOD>1){
+    point->C=point->B->downright;
+    point->B=point->B->downleft;
+  }
+  //D
+  point->D=point->I->upright;
+  //E
+  point->E=point->I->downright;
+  //F
+  point->F=point->I->downleft;
+
+  //G&H
+  if(point->H!=NULL&&point->H->NOD>1){
+    point->G=point->H->downright;
+    point->H=point->H->upright;
+  }
+  //I
+  point->I=point->I->upleft;
+  return point;
+}
+Pointer* insertUPRIGHTPointer(Pointer *root){
+  Pointer *point=(Pointer *)malloc(sizeof(Pointer));
+  *point=*root;
+  //A&B
+  if(point->B==NULL){
+    point->A=NULL;
   }
   else{
-
+    point->A=point->B->downleft;
+    point->B=point->B->downright;
   }
+  //C
+  if(point->C!=NULL&&point->C->NOD>1){
+    point->C=point->C->downleft;
+  }
+  //D&E
+  if(point->D!=NULL&&point->D->NOD>1){
+    point->E=point->D->upleft;
+    point->D=point->D->upleft;
+  }
+  //F
+  point->F=point->I->downright;
+  //G
+  point->G=point->I->downleft;
+  //H
+  point->H=point->I->upleft;
+  //I
+  point->I=point->I->upright;
 
+  return point;
 }
+Pointer* insertDOWNRIGHTPointer(Pointer *root){
+  Pointer *point=(Pointer *)malloc(sizeof(Pointer));
+  *point=*root;
+  //A
+  point->A=point->I->upleft;
+  //B
+  point->B=point->I->upright;
+  //C&D
+  if(point->D!=NULL&&point->D->NOD>1){
+    point->C=point->D->upleft;
+    point->D=point->D->downleft;
+  }
+  //E
+  if(point->E!=NULL)
+    point->E=point->E->upleft;
+  //F&G
+  if(point->F!=NULL&&point->F->NOD>1){
+    point->G=point->F->upleft;
+    point->F=point->F->upright;
+  }
+  //H
+  point->B=point->I->downleft;
+  //I
+  point->I=point->I->downright;
+
+  return point;
+}
+Pointer *insertNULLPointer(QuadTree *root,Pointer* point,int mode){
+  Pointer *new=(Pointer *)malloc(sizeof(Pointer));
+  if(mode==UPLEFT){
+    *new=(Pointer){NULL,NULL,NULL,root->upright,root->downright,\
+      root->downleft,NULL,NULL,root->upleft};
+  }
+  else if(mode==UPRIGHT){
+    *new=(Pointer){NULL,NULL,NULL,NULL,NULL,\
+      root->downright,root->downleft,root->upleft,root->upright};
+  }
+  else if(mode==DOWNRIGHT){
+    *new=(Pointer){root->upleft,root->upright,NULL,NULL,NULL,\
+      NULL,NULL,root->downleft,root->downright};
+  }
+  else if(mode==DOWNLEFT){
+    *new=(Pointer){NULL,root->upleft,root->upright,root->downright,NULL,\
+      NULL,NULL,NULL,root->downleft};
+  }
+  point=new;
+  return point;
+}
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 void checkUpRight(QuadTree *root,Coordinate Coor,int level,int mode){
   if(root->upright!=NULL){
     if(root->upright->NOD==1)
@@ -456,44 +537,4 @@ Quad* putQuad(QuadTree *root,Quad *quadrant,int lvl){
             }
             return quadrant;
   }
-}
-int checkQuadNULL(Quad *quadrant){
-if(quadrant->Q1==NULL&&quadrant->Q2==NULL&&quadrant->Q3==NULL&&quadrant->Q4==NULL)
-  return 0;
-else
-  return 1;
-}
-void checkLevel(Quad *quadrant,int level,int mode ){
-  QuadTree *root={}
-  if(level==1){
-    if(mode==UPLEFT){
-      checkUpRight(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==UPRIGHT){
-      checkUpLeft(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==DOWNLEFT){
-      checkUpLeft(root,Coor,level,mode);
-      checkUpRight(root,Coor,level,mode);
-      checkDownRight(root,Coor,level,mode);
-    }
-    else if(mode==DOWNRIGHT){
-      checkUpLeft(root,Coor,level,mode);
-      checkUpRight(root,Coor,level,mode);
-      checkDownLeft(root,Coor,level,mode);
-    }
-  }
-}
-void checkQuadrant(Quad *quadrant){
-  if(quadrant->Q1!=NULL){
-    if(checkQuadNULL(quadrant->Q1)==0)
-      checkLevel(quadrant,quadrant->Q1->level,UPLEFT);
-    else
-      checkQuadrant(quadrant->Q1);
-  }
-
 }

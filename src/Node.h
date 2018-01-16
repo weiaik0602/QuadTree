@@ -39,4 +39,16 @@ struct Quad{
   Coordinate data;
   int level;
 };
+typedef struct Pointer Pointer;
+struct Pointer{
+  QuadTree *A;
+  QuadTree *B;
+  QuadTree *C;
+  QuadTree *D;
+  QuadTree *E;
+  QuadTree *F;
+  QuadTree *G;
+  QuadTree *H;
+  QuadTree *I;
+};
 #endif // _NODE_H

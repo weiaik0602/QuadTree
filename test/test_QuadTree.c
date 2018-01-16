@@ -150,27 +150,129 @@ void test_QuadTreeDelete_2ndLevel(void){
 
 
 }
-
+//////////////////////////////////////////////////////////////////////////////
 void test_calculateDistance(void){
 //calculateDistance(Cn22,C35);
   //printf("%f",x);
   //TEST_ASSERT_EQUAL_D(x,0);
 }
 
-void test_QuadCheck(void){
+void test_insertNULLPointer_UPLEFT(void){
   Coordinate max={100,100};
   Coordinate min={-100,-100};
-   QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
-//  QuadTree *TreePtr=(QuadTree *)calloc(5000000, sizeof(QuadTree));
-  QuadTree *TreePtr= (QuadTree *)calloc(10, sizeof(QuadTree));
-  TreePtr=&Tree;
+  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+  QuadTree *TreePtr=&Tree;
     //add into 4 elements
     TreePtr=QuadTreeAdd(&TreePtr,Cn22);
     TreePtr=QuadTreeAdd(&TreePtr,C22);
     TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
     TreePtr=QuadTreeAdd(&TreePtr,C2n2);
     TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
-    Quad quadrant;
-    quadrant=*putQuad(TreePtr,&quadrant,0);
-    QuadCheck(Cn22,&Tree,UPLEFT,0);
+    Pointer *test=(Pointer*)calloc(1,sizeof(Pointer));
+    test=insertNULLPointer(TreePtr,test,UPLEFT);
+    TEST_ASSERT_EQUAL_PTR(test->A,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->B,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->C,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->D,TreePtr->upright);
+    TEST_ASSERT_EQUAL_PTR(test->E,TreePtr->downright);
+    TEST_ASSERT_EQUAL_PTR(test->F,TreePtr->downleft);
+    TEST_ASSERT_EQUAL_PTR(test->G,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->H,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->I,TreePtr->upleft);
+}
+void test_insertNULLPointer_UPRIGHT(void){
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+  QuadTree *TreePtr=&Tree;
+    //add into 4 elements
+    TreePtr=QuadTreeAdd(&TreePtr,Cn22);
+    TreePtr=QuadTreeAdd(&TreePtr,C22);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
+    Pointer *test=(Pointer*)calloc(1,sizeof(Pointer));
+    test=insertNULLPointer(TreePtr,test,UPRIGHT);
+    TEST_ASSERT_EQUAL_PTR(test->A,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->B,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->C,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->D,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->E,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->F,TreePtr->downright);
+    TEST_ASSERT_EQUAL_PTR(test->G,TreePtr->downleft);
+    TEST_ASSERT_EQUAL_PTR(test->H,TreePtr->upleft);
+    TEST_ASSERT_EQUAL_PTR(test->I,TreePtr->upright);
+}
+
+void test_insertNULLPointer_DOWNRIGHT(void){
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+  QuadTree *TreePtr=&Tree;
+    //add into 4 elements
+    TreePtr=QuadTreeAdd(&TreePtr,Cn22);
+    TreePtr=QuadTreeAdd(&TreePtr,C22);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
+    Pointer *test=(Pointer*)calloc(1,sizeof(Pointer));
+    test=insertNULLPointer(TreePtr,test,DOWNRIGHT);
+    TEST_ASSERT_EQUAL_PTR(test->A,TreePtr->upleft);
+    TEST_ASSERT_EQUAL_PTR(test->B,TreePtr->upright);
+    TEST_ASSERT_EQUAL_PTR(test->C,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->D,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->E,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->F,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->G,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->H,TreePtr->downleft);
+    TEST_ASSERT_EQUAL_PTR(test->I,TreePtr->downright);
+}
+void test_insertNULLPointer_DOWNLEFT(void){
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+  QuadTree *TreePtr=&Tree;
+    //add into 4 elements
+    TreePtr=QuadTreeAdd(&TreePtr,Cn22);
+    TreePtr=QuadTreeAdd(&TreePtr,C22);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+    TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
+    Pointer *test=(Pointer*)calloc(1,sizeof(Pointer));
+    test=insertNULLPointer(TreePtr,test,DOWNLEFT);
+    TEST_ASSERT_EQUAL_PTR(test->A,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->B,TreePtr->upleft);
+    TEST_ASSERT_EQUAL_PTR(test->C,TreePtr->upright);
+    TEST_ASSERT_EQUAL_PTR(test->D,TreePtr->downright);
+    TEST_ASSERT_EQUAL_PTR(test->E,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->F,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->G,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->H,NULL);
+    TEST_ASSERT_EQUAL_PTR(test->I,TreePtr->downleft);
+}
+void test_insertUPLEFTPointer(void){
+  Coordinate max={100,100};
+  Coordinate min={-100,-100};
+  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
+  QuadTree *TreePtr=&Tree;
+  //add into 4 elements
+  TreePtr=QuadTreeAdd(&TreePtr,Cn22);
+  TreePtr=QuadTreeAdd(&TreePtr,C22);
+  TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
+  TreePtr=QuadTreeAdd(&TreePtr,C2n2);
+  TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
+  //initialize it
+  Pointer *before=(Pointer*)calloc(1,sizeof(Pointer));
+  before=insertNULLPointer(TreePtr,before,UPLEFT);
+  Pointer *after=(Pointer*)calloc(1,sizeof(Pointer));
+  after=insertUPLEFTPointer(before);
+  TEST_ASSERT_EQUAL_PTR(after->A,NULL);
+  TEST_ASSERT_EQUAL_PTR(after->B,NULL);
+  TEST_ASSERT_EQUAL_PTR(after->C,NULL);
+  TEST_ASSERT_EQUAL_PTR(after->D,before->I->upright);
+  TEST_ASSERT_EQUAL_PTR(after->E,before->I->downright);
+  TEST_ASSERT_EQUAL_PTR(after->F,before->I->downleft);
+  TEST_ASSERT_EQUAL_PTR(after->G,NULL);
+  TEST_ASSERT_EQUAL_PTR(after->H,NULL);
+  TEST_ASSERT_EQUAL_PTR(after->I,before->I->upleft);
 }
