@@ -2,18 +2,7 @@
 #define _NODE_H
 
 #include "Coordinate.h"
-typedef struct Node Node;
-struct Node {
-  Node *upleft;
-  Node *upright;
-  Node *downleft;
-  Node *downright;
-  Coordinate coor;
-  Coordinate mid;
-  Coordinate max;
-  Coordinate min;
-  Coordinate data;
-};
+
 
 typedef struct QuadTree QuadTree;
 struct QuadTree{
@@ -30,15 +19,6 @@ struct QuadTree{
 
 };
 
-typedef struct Quad Quad;
-struct Quad{
-  Quad* Q1;
-  Quad* Q2;
-  Quad* Q3;
-  Quad* Q4;
-  Coordinate data;
-  int level;
-};
 typedef struct Pointer Pointer;
 struct Pointer{
   QuadTree *A;
