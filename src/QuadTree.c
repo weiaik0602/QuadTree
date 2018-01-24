@@ -216,9 +216,9 @@ void calculateDistance(Coordinate a,Coordinate b){
   x=x*x;
   y=y*y;
   double result=sqrt(x+y);
-  if(result<COLLISION_RANGE){
+//  if(result<COLLISION_RANGE){
     printf("(%d,%d) (%d,%d) range %.2f\n",a.x,a.y,b.x,b.y,result);
-  }
+//  }
 }
 void QuadCheck(QuadTree *root){
   if(root->upleft!=NULL){

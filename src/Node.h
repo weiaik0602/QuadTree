@@ -31,4 +31,11 @@ struct Pointer{
   QuadTree *H;
   QuadTree *I;
 };
+
+typedef struct CheckOutput CheckOutput;
+struct CheckOutput{
+  Coordinate a;
+  Coordinate b;
+  double range;
+};
 #endif // _NODE_H

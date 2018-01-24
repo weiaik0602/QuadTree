@@ -417,31 +417,40 @@ void test_insertDOWNLEFTPointer(void){
   TEST_ASSERT_EQUAL_PTR(after->H,NULL);
   TEST_ASSERT_EQUAL_PTR(after->I,before->I->downleft);
 }
-void test_checkInPointer(void){
-  Coordinate max={100,100};
-  Coordinate min={-100,-100};
-  QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
-  QuadTree *TreePtr=&Tree;
-  //add into 4 elements
-  TreePtr=QuadTreeAdd(&TreePtr,Cn22);
-  TreePtr=QuadTreeAdd(&TreePtr,C22);
-  TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
-  TreePtr=QuadTreeAdd(&TreePtr,C2n2);
-  TreePtr=QuadTreeAdd(&TreePtr,Cn7575);
-  //initialize it
-  Pointer *before=(Pointer*)calloc(1,sizeof(Pointer));
-  before=insertNULLPointer(TreePtr,before,UPLEFT);
-  Pointer *after=insertDOWNLEFTPointer(before);
-  //checkInPointer(Cn22,after);
-}
 
-void test_QuadCheck(void){
+/* My data
+  (-75,75)  | (-2,75) | (2,75)  | (75,75)
+  ---------------------------------------
+  (-75,2)   | (-2,2)  | (2,2)   | (75,2)
+  ----------------------------------------
+  (-75,-2)  | (-2,-2) | (2,-2)  | (75,-2)
+  ----------------------------------------
+  (-75,-75) | (-2,-75)| (2,-75) | (75,-75)
+
+  Quarant 1=(-75,75),(-2,75),(-75,2),(-2,2)
+  Quarant 2= (2,75) , (75,75),(2,2), (75,2)
+  Quarant 3= (2,-2),(75,-2),(2,-75),(75,-75)
+  Quarant 4=(-75,-2),(-2,-2),(-75,-75),(-2,-75)
+  This function will be outputing the coordinate that should
+  should check from particular Coordinate
+  Example 1
+  Coordinate (-75,75)
+  This coordinate will be checked with its nearby coordinate which is
+  (-2,75),(-2,2)and (-75,2)
+  Example 2
+  Coordinate (-2,2)
+  This will be checked with the 8 coordinate surrounding it
+  (-75,75),(-2,75),(2,75),(2,2),(2,-2),(-2,-2),(-75,-2),(-75,2)
+*/
+
+void test_QuadCheck_without_filtering(void){
+  //This test is without filtering
+  //where it will display all the results even it is far away
   Coordinate max={100,100};
   Coordinate min={-100,-100};
   QuadTree Tree={NULL,NULL,NULL,NULL,0,max,min};
   QuadTree *TreePtr=&Tree;
-  //add into 4 elements
-  //,Cn2n75,C2n75,C75n75;
+  //add into 16 elements
   TreePtr=QuadTreeAdd(&TreePtr,Cn22);
   TreePtr=QuadTreeAdd(&TreePtr,C22);
   TreePtr=QuadTreeAdd(&TreePtr,Cn2n2);
